@@ -2,6 +2,7 @@
   <div class="red">
     {{n}}
     <br />
+    Demo
     <br />
     <button @click="add">+1s</button>
   </div>

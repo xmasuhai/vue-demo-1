@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     {{n}}
-    <button @click="add">+1</button>
+    <button @click="add">+2</button>
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
   },
   methods: {
     add() {
-      this.n += 1;
+      this.n += 2;
     },
   },
 };
