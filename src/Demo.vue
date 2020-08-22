@@ -50,5 +50,11 @@ button {
   border-radius: 2em;
   font: inherit;
   padding: 0.75em 2em;
+  outline:none;
 }
+button:hover {
+  cursor: pointer;
+  outline:none;
+  }
+
 </style>

@@ -84,7 +84,6 @@ new Vue({
 */
 
 /*
-
 const vm = new Vue({
   /!*
   data: {
@@ -128,12 +127,12 @@ vm.$mount('#xmas')
 // 组件
 // Vue.component
 /*
-
 Vue.component('Demo2', {
   template: `
     <div>demo222</div>
   `,
 })
+
 // 单文件组件
 import Demo from './Demo.vue'
 import App from './App.vue'
@@ -194,11 +193,49 @@ const vm = new Vue({
 vm.$mount('#xmas')
 */
 
+// 全局组件
+/*
+Vue.component("button-counter", {
+  data() {
+    return {
+      count: 0
+    };
+  },
+  template: `
+    <div>
+      <button @click="add">
+        You clicked me {{ count }} times.
+      </button>
+      <button @click="add">
+        You clicked him {{ count }} times.
+      </button>
+      <button @click="add">
+        You clicked her {{ count }} times.
+      </button>
+    </div>
+  `,
+  methods: {
+    add() {
+      this.count += 1
+    }
+  }
+});
+
+new Vue({
+  template: `
+      <div>
+        <button-counter/>
+        <button-counter/>
+        <button-counter/>
+      </div>
+  `,
+}).$mount('#xmas');
+*/
+
 // 四个钩子 created 创
 // 四个钩子 mounted 挂
 // 四个钩子 updated 更
 /*
-
 new Vue({
   data() {
     return {
@@ -236,7 +273,10 @@ new Vue({
 */
 
 // 四个钩子 destroyed(unmounted vue3.x) 消
+/*
+
 import Destroy from './Destroy.vue'
+
 new Vue({
   components: {Destroy},
   data() {
@@ -250,6 +290,7 @@ new Vue({
         <button @click="toggle">toggle</button>
         <hr>
         <Destroy v-if="isVisible === true"/>
+        <hr>
       </div>
   `,
   methods: {
@@ -259,3 +300,54 @@ new Vue({
   },
   // render: h => h(Destroy)
 }).$mount('#xmas');
+*/
+
+// props
+import Props from './Props-demo'
+new Vue({
+  components: {Props},
+  data() {
+    return {
+      n: 0,
+    }
+  },
+  template: `
+    <div>
+      {{n}}
+      <Props message="我好了 props"/>
+      <Props :message="n"/>
+      <Props :message="0"/>
+      <Props :message="true"/>
+      <Props :message="null"/>
+      <Props :message="undefined"/>
+      <Props :message="20n"/>
+      <Props :message="{}"/>
+    </div>
+  `,
+  methods: {
+    add() {
+      this.n += 1
+    }
+  },
+}).$mount('#xmas');
+// props 方法
+new Vue({
+  components: {Props},
+  data() {
+    return {
+      n: 0,
+    }
+  },
+  template: `
+    <div>
+    {{n}}
+    <Props :fn="add" :message="n"/>
+    </div>
+  `,
+  methods: {
+    add() {
+      this.n += 1
+    }
+  },
+}).$mount('#xmas2');
+
